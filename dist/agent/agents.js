@@ -1,23 +1,19 @@
 import { createReactAgent } from "@langchain/langgraph/prebuilt";
 import { currencyTool } from "../tools/currency-tool.js";
-
 import { ChatOllama } from "@langchain/ollama";
 import { calculator } from "../tools/currency-calculator.js";
 import { ragTool } from "../tools/rag-tool.js";
-
 export const llm = new ChatOllama({
     model: "mistral",
     temperature: 0
 });
-
 export const agent = createReactAgent({
     llm,
     tools: [
         currencyTool,
         calculator,
         ragTool,
-    ], 
-
+    ],
     messageModifier: `
     You are a financial assistant. You ONLY answer from the tools provided.
 
